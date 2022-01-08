@@ -108,7 +108,8 @@ struct WebView: UIViewRepresentable, WebViewHandlerDelegate {
 			}*/
 			
 			print("didFinish")
-			print(parent.viewModel.score)
+			print("parent.viewModel.score: "+parent.viewModel.score)
+			print("parent.score:" + parent.score)
 			let javascriptFunction = "load_score_view(\"\(parent.viewModel.score)\");"
 			print(javascriptFunction)
 			webView.evaluateJavaScript(javascriptFunction) { (response, error) in
@@ -146,7 +147,7 @@ struct WebView: UIViewRepresentable, WebViewHandlerDelegate {
 						print(error.localizedDescription)
 					} else {
 						print("Called javascript:load_score_view()")
-						print("parent.webview.score: "+self.parent.score)
+						print("parent.score: "+self.parent.score)
 					}
 				}
 			})
