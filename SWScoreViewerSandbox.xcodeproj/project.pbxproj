@@ -7,18 +7,42 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C864FE1C2789440A0005E2F4 /* LessonScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C864FE1B2789440A0005E2F4 /* LessonScoreView.swift */; };
+		C864FE1E278944560005E2F4 /* www in Resources */ = {isa = PBXBuildFile; fileRef = C864FE1D278944560005E2F4 /* www */; };
+		C864FE20278944C60005E2F4 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C864FE1F278944C60005E2F4 /* ViewModel.swift */; };
+		C864FE22278944F90005E2F4 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C864FE21278944F90005E2F4 /* WebView.swift */; };
+		C864FE2627898DA60005E2F4 /* HTMLStringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C864FE2527898DA60005E2F4 /* HTMLStringView.swift */; };
+		C864FE2827898DD60005E2F4 /* LessonTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C864FE2727898DD60005E2F4 /* LessonTextView.swift */; };
 		C8DD4FCD2784822D0099BB55 /* SWScoreViewerSandboxApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DD4FCC2784822D0099BB55 /* SWScoreViewerSandboxApp.swift */; };
 		C8DD4FCF2784822D0099BB55 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DD4FCE2784822D0099BB55 /* ContentView.swift */; };
 		C8DD4FD12784822E0099BB55 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8DD4FD02784822E0099BB55 /* Assets.xcassets */; };
 		C8DD4FD42784822E0099BB55 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8DD4FD32784822E0099BB55 /* Preview Assets.xcassets */; };
+		C8DD4FDB2785BFD90099BB55 /* LessonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DD4FDA2785BFD90099BB55 /* LessonView.swift */; };
+		C8DD4FDD2785C02C0099BB55 /* NavigationGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DD4FDC2785C02C0099BB55 /* NavigationGuideView.swift */; };
+		C8DD4FDF2785D63F0099BB55 /* ScorewindData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DD4FDE2785D63F0099BB55 /* ScorewindData.swift */; };
+		C8DD4FE1278694520099BB55 /* LessonVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DD4FE0278694520099BB55 /* LessonVideoView.swift */; };
+		C8DD4FE3278695800099BB55 /* ScorewindCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DD4FE2278695800099BB55 /* ScorewindCourse.swift */; };
+		C8DD4FE5278695CC0099BB55 /* ScorewindLesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DD4FE4278695CC0099BB55 /* ScorewindLesson.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C864FE1B2789440A0005E2F4 /* LessonScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonScoreView.swift; sourceTree = "<group>"; };
+		C864FE1D278944560005E2F4 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
+		C864FE1F278944C60005E2F4 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		C864FE21278944F90005E2F4 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		C864FE2527898DA60005E2F4 /* HTMLStringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLStringView.swift; sourceTree = "<group>"; };
+		C864FE2727898DD60005E2F4 /* LessonTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonTextView.swift; sourceTree = "<group>"; };
 		C8DD4FC92784822D0099BB55 /* SWScoreViewerSandbox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SWScoreViewerSandbox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8DD4FCC2784822D0099BB55 /* SWScoreViewerSandboxApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWScoreViewerSandboxApp.swift; sourceTree = "<group>"; };
 		C8DD4FCE2784822D0099BB55 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C8DD4FD02784822E0099BB55 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C8DD4FD32784822E0099BB55 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C8DD4FDA2785BFD90099BB55 /* LessonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonView.swift; sourceTree = "<group>"; };
+		C8DD4FDC2785C02C0099BB55 /* NavigationGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationGuideView.swift; sourceTree = "<group>"; };
+		C8DD4FDE2785D63F0099BB55 /* ScorewindData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScorewindData.swift; sourceTree = "<group>"; };
+		C8DD4FE0278694520099BB55 /* LessonVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonVideoView.swift; sourceTree = "<group>"; };
+		C8DD4FE2278695800099BB55 /* ScorewindCourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScorewindCourse.swift; sourceTree = "<group>"; };
+		C8DD4FE4278695CC0099BB55 /* ScorewindLesson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScorewindLesson.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,10 +75,22 @@
 		C8DD4FCB2784822D0099BB55 /* SWScoreViewerSandbox */ = {
 			isa = PBXGroup;
 			children = (
+				C864FE1D278944560005E2F4 /* www */,
 				C8DD4FCC2784822D0099BB55 /* SWScoreViewerSandboxApp.swift */,
-				C8DD4FCE2784822D0099BB55 /* ContentView.swift */,
 				C8DD4FD02784822E0099BB55 /* Assets.xcassets */,
 				C8DD4FD22784822E0099BB55 /* Preview Content */,
+				C8DD4FDC2785C02C0099BB55 /* NavigationGuideView.swift */,
+				C8DD4FCE2784822D0099BB55 /* ContentView.swift */,
+				C8DD4FDA2785BFD90099BB55 /* LessonView.swift */,
+				C8DD4FE0278694520099BB55 /* LessonVideoView.swift */,
+				C864FE1B2789440A0005E2F4 /* LessonScoreView.swift */,
+				C864FE2727898DD60005E2F4 /* LessonTextView.swift */,
+				C8DD4FDE2785D63F0099BB55 /* ScorewindData.swift */,
+				C8DD4FE2278695800099BB55 /* ScorewindCourse.swift */,
+				C8DD4FE4278695CC0099BB55 /* ScorewindLesson.swift */,
+				C864FE1F278944C60005E2F4 /* ViewModel.swift */,
+				C864FE21278944F90005E2F4 /* WebView.swift */,
+				C864FE2527898DA60005E2F4 /* HTMLStringView.swift */,
 			);
 			path = SWScoreViewerSandbox;
 			sourceTree = "<group>";
@@ -125,6 +161,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C864FE1E278944560005E2F4 /* www in Resources */,
 				C8DD4FD42784822E0099BB55 /* Preview Assets.xcassets in Resources */,
 				C8DD4FD12784822E0099BB55 /* Assets.xcassets in Resources */,
 			);
@@ -137,8 +174,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C864FE20278944C60005E2F4 /* ViewModel.swift in Sources */,
 				C8DD4FCF2784822D0099BB55 /* ContentView.swift in Sources */,
+				C864FE1C2789440A0005E2F4 /* LessonScoreView.swift in Sources */,
+				C864FE2827898DD60005E2F4 /* LessonTextView.swift in Sources */,
+				C8DD4FE3278695800099BB55 /* ScorewindCourse.swift in Sources */,
+				C8DD4FE5278695CC0099BB55 /* ScorewindLesson.swift in Sources */,
+				C8DD4FDF2785D63F0099BB55 /* ScorewindData.swift in Sources */,
+				C8DD4FE1278694520099BB55 /* LessonVideoView.swift in Sources */,
+				C864FE2627898DA60005E2F4 /* HTMLStringView.swift in Sources */,
+				C8DD4FDD2785C02C0099BB55 /* NavigationGuideView.swift in Sources */,
+				C8DD4FDB2785BFD90099BB55 /* LessonView.swift in Sources */,
 				C8DD4FCD2784822D0099BB55 /* SWScoreViewerSandboxApp.swift in Sources */,
+				C864FE22278944F90005E2F4 /* WebView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

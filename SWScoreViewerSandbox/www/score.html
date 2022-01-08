@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Video with Score Test</title>
+	<meta charset="utf-8"/>
+
+	<script src="js/jquery.min.js" type="text/javascript"></script>
+
+	<script src="js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+	<!--	<script src="js/input-spinner.js" type="text/javascript"></script>-->
+
+	<link rel="stylesheet" href="css/bootstrap.min.css" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/all.min.css" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	      rel="stylesheet">
+
+<script>
+          var adminMode = false;
+          var LocalXMLFile = "https://scorewind.com/sw-music/pdfProject/Sheet13110/Methods_41480_24_Etudes_Op__35_Etude_No__17_Moderato__2268.xml";
+          var sheetID = "";
+          var Local_timestamp_data = [{"id_ts":0,"measure":0,"timestamp":0},{"id_ts":1,"measure":1,"timestamp":1.63507},{"id_ts":2,"measure":2,"timestamp":3.0458},{"id_ts":3,"measure":3,"timestamp":4.88502},{"id_ts":4,"measure":5,"timestamp":6.54889},{"id_ts":5,"measure":6,"timestamp":8.75735},{"id_ts":6,"measure":7,"timestamp":10.61263},{"id_ts":7,"measure":8,"timestamp":12.9323},{"id_ts":8,"measure":10,"timestamp":14.99736},{"id_ts":9,"measure":11,"timestamp":18.08084},{"id_ts":10,"measure":12,"timestamp":20.44426},{"id_ts":11,"measure":13,"timestamp":21.74902},{"id_ts":12,"measure":15,"timestamp":23.6524},{"id_ts":13,"measure":16,"timestamp":25.89369},{"id_ts":14,"measure":17,"timestamp":27.80444},{"id_ts":15,"measure":18,"timestamp":29.75703},{"id_ts":16,"measure":20,"timestamp":31.54092},{"id_ts":17,"measure":21,"timestamp":34.10773},{"id_ts":18,"measure":22,"timestamp":36.43838},{"id_ts":19,"measure":23,"timestamp":38.0443},{"id_ts":20,"measure":25,"timestamp":40.3962},{"id_ts":21,"measure":26,"timestamp":42.35609},{"id_ts":22,"measure":27,"timestamp":44.13953},{"id_ts":23,"measure":28,"timestamp":45.90758},{"id_ts":24,"measure":30,"timestamp":47.99595},{"id_ts":25,"measure":31,"timestamp":50.8362},{"id_ts":26,"measure":32,"timestamp":52.71218},{"id_ts":27,"measure":33,"timestamp":54.68862},{"id_ts":28,"measure":34,"timestamp":56.57936},{"id_ts":29,"measure":36,"timestamp":58.84624},{"id_ts":30,"measure":37,"timestamp":61.43915},{"id_ts":31,"measure":38,"timestamp":64.11325},{"id_ts":32,"measure":39,"timestamp":66.40711}];
+
+          
+          
+          sendStringValueToIOS();
+          sendJsonValueToIOS();
+          
+          // This function sends a simple json value to iOS app
+          function sendJsonValueToIOS() {
+              // Here iOSNative is the name we passed from iOS app
+              window.webkit.messageHandlers.iOSNative.postMessage({Name : "John Doe"});
+          }
+      
+          // This function sends a string value to iOS app
+          function sendStringValueToIOS() {
+              // Here iOSNative is the name we passed from iOS app
+              window.webkit.messageHandlers.iOSNative.postMessage("Bla Bla Bla");
+          }
+      
+          function valueGotFromIOS(value) {
+//              document.getElementById("output").innerHTML = document.getElementById("output").innerHTML + "<br>" + value;
+              current_measure = timestamp_Json_Array[parseInt(value,10)].measure;
+              draw_measure_indicator(true);
+          }
+
+          
+				</script>
+	<script src="js/opensheetmusicdisplay.min.js"></script>
+	<script src="js/musicxml-score-viewer.js"></script>
+
+    <link href="css/musicxml-score-viewer.css" rel="stylesheet">
+	<link href="css/loading2.css" rel="stylesheet">
+
+	<style>
+    .video-js .vjs-current-time, .vjs-no-flex .vjs-current-time {
+      display: block !important;
+    }
+	</style>
+</head>
+<body style="margin:0px;" class="noselect">
+
+
+				<div class="wrap-loader" id="loading_div">
+					<div class="loader">
+						<div class="box"></div>
+						<div class="box"></div>
+						<div class="box"></div>
+						<div class="box"></div>
+						<div class="wrap-text">
+							<div class="text"><span>R</span><span>E</span><span>N</span><span>D</span><span>E</span><span>R</span><span>I</span><span>NG</span>
+							</div>
+						</div>
+					</div>
+					<div class="loader-text">wait please</div>
+				</div>
+
+
+
+				<div id="osmdContainer" class="style-1"
+				     style="width: 100vw; height: 90vh; overflow-y: auto; overflow-x: hidden; display: inline-block; position: relative;">
+				</div>
+
+
+</body>
+</html>

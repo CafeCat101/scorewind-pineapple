@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct SWScoreViewerSandboxApp: App {
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
-    }
+	@StateObject var scorewindData = ScorewindData()
+	
+	var body: some Scene {
+		WindowGroup {
+			ContentView().environmentObject(scorewindData)
+		}
+	}
 }
