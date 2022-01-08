@@ -63,6 +63,25 @@ struct WebView: UIViewRepresentable, WebViewHandlerDelegate {
 			if let url = Bundle.main.url(forResource: "score", withExtension: "html", subdirectory: "www") {
 				print("Load local file 2")
 				webView.loadFileURL(url, allowingReadAccessTo: url.deletingLastPathComponent())
+				print(score)
+				
+				DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+					print("updateUIView")
+					print("viewModel.score: "+viewModel.score)
+					print("score:" + score)
+					let javascriptFunction = "load_score_view(\"\(score)\");"
+					print(javascriptFunction)
+					webView.evaluateJavaScript(javascriptFunction) { (response, error) in
+						if let error = error {
+							print("Error calling javascript:load_score_view()")
+							print(error.localizedDescription)
+						} else {
+							print("Called javascript:load_score_view()")
+						}
+					}
+				}
+				
+				
 			}
 		} else if url == .publicUrl {
 			// Load a public website, for example I used here google.com
@@ -107,7 +126,7 @@ struct WebView: UIViewRepresentable, WebViewHandlerDelegate {
 				self.parent.viewModel.showWebTitle.send(title)
 			}*/
 			
-			print("didFinish")
+			/*print("didFinish")
 			print("parent.viewModel.score: "+parent.viewModel.score)
 			print("parent.score:" + parent.score)
 			let javascriptFunction = "load_score_view(\"\(parent.viewModel.score)\");"
@@ -119,7 +138,7 @@ struct WebView: UIViewRepresentable, WebViewHandlerDelegate {
 				} else {
 					print("Called javascript:load_score_view()")
 				}
-			}
+			}*/
 			
 			
 			/* An observer that observes 'viewModel.valuePublisher' to get value from TextField and
@@ -133,6 +152,7 @@ struct WebView: UIViewRepresentable, WebViewHandlerDelegate {
 						print(error.localizedDescription)
 					} else {
 						print("Called javascript:valueGotFromIOS()")
+						print("parent.score: "+self.parent.score)
 					}
 				}
 			})
