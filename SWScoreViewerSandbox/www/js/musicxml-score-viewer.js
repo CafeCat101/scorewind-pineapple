@@ -336,6 +336,7 @@ function load_score_view(LocalXMLFile) {
     backend: "svg",
     autoResize: false,
     drawTitle: false,
+		alignRests: 2 
     // drawingParameters: "compacttight" // don't display title, composer etc., smaller margins
   });
   osmd.load(LocalXMLFile).then(
