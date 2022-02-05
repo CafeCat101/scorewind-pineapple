@@ -17,7 +17,7 @@ struct LessonView: View {
 	@State private var showScore = false
 	@State private var startPos:CGPoint = .zero
 	@State private var isSwipping = true
-	@State var player = AVPlayer()
+	@State private var player = AVPlayer()
 	
 	var body: some View {
 		if goToView == "lesson" {
