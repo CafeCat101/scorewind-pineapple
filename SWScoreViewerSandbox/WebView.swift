@@ -10,6 +10,7 @@ import UIKit
 import SwiftUI
 import Combine
 import WebKit
+import AVKit
 
 // MARK: - WebViewHandlerDelegate
 // For printing values received from web app
@@ -20,18 +21,21 @@ protocol WebViewHandlerDelegate {
 
 // MARK: - WebView
 struct WebView: UIViewRepresentable, WebViewHandlerDelegate {
+	var url: WebUrlType
+	// Viewmodel object
+	@ObservedObject var viewModel: ViewModel
+	var score: String
+	var linkVideoPlayer: AVPlayer?
+	
 	func receivedJsonValueFromWebView(value: [String : Any?]) {
 		print("JSON value received from web is: \(value)")
+		linkVideoPlayer?.pause()
+		
 	}
 	
 	func receivedStringValueFromWebView(value: String) {
 		print("String value received from web is: \(value)")
 	}
-	
-	var url: WebUrlType
-	// Viewmodel object
-	@ObservedObject var viewModel: ViewModel
-	var score: String
 	
 	// Make a coordinator to co-ordinate with WKWebView's default delegate functions
 	func makeCoordinator() -> Coordinator {

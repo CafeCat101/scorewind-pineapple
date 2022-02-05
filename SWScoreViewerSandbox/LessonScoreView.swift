@@ -6,14 +6,16 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct LessonScoreView: View {
 	var viewModel:ViewModel
 	@EnvironmentObject var scorewindData:ScorewindData
+	@Binding var player: AVPlayer
 	
 	var body: some View {
 		VStack {
-			WebView(url: .localUrl, viewModel: viewModel, score: scorewindData.currentLesson.scoreViewer).overlay (
+			WebView(url: .localUrl, viewModel: viewModel, score: scorewindData.currentLesson.scoreViewer, linkVideoPlayer: player).overlay (
 				RoundedRectangle(cornerRadius: 0, style: .circular)
 					.stroke(Color.gray, lineWidth: 0.5)
 			).padding(.leading, 0).padding(.trailing, 0)
@@ -60,7 +62,8 @@ struct LessonScoreView: View {
 }
 
 struct LessonScoreView_Previews: PreviewProvider {
+	@State static var player = AVPlayer()
 	static var previews: some View {
-		LessonScoreView(viewModel: ViewModel()).environmentObject(ScorewindData())
+		LessonScoreView(viewModel: ViewModel(), player: $player).environmentObject(ScorewindData())
 	}
 }

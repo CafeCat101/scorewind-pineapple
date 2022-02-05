@@ -8,10 +8,31 @@
 import Foundation
 import AVKit
 
-class PlayerViewModel: ObservableObject {
-	let player: AVPlayer
+class PlayerViewModel {
+	var player:AVPlayer?
 	
-	init(videoURL:String){
-		player = AVPlayer(url: URL(string: videoURL)!)
+	func setPlayer(videoURL:String){
+		player = AVPlayer(url: URL(string: decodeVideoURL(videoURL: videoURL))!)
+	}
+	
+	private func decodeVideoURL(videoURL:String)->String{
+		let decodedURL = videoURL.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!
+		//print(decodedURL)
+		return decodedURL
+	}
+	
+	private func createTimeString(time: Float) -> String {
+		let timeRemainingFormatter: DateComponentsFormatter = {
+			let formatter = DateComponentsFormatter()
+			formatter.zeroFormattingBehavior = .pad
+			formatter.allowedUnits = [.minute, .second]
+			return formatter
+		}()
+		
+		let components = NSDateComponents()
+		components.second = Int(max(0.0, time))
+		return timeRemainingFormatter.string(from: components as DateComponents)!
 	}
 }
+
+

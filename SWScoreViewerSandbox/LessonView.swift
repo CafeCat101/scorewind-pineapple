@@ -18,6 +18,7 @@ struct LessonView: View {
 	@State private var startPos:CGPoint = .zero
 	@State private var isSwipping = true
 	@State private var player = AVPlayer()
+	//@State private var playerModel = PlayerViewModel()
 	
 	var body: some View {
 		if goToView == "lesson" {
@@ -40,16 +41,28 @@ struct LessonView: View {
 							//print(time)
 							print(createTimeString(time: Float(time.seconds)))
 							//watchTime = createTimeString(time: Float(time.seconds))
-							self.viewModel.valuePublisher.send(String(String(format: "%.4f", Float(time.seconds))))
+							//self.viewModel.valuePublisher.send(String(String(format: "%.4f", Float(time.seconds))))
 							//watchTime = String(format: "%.4f", Float(time.seconds))//createTimeString(time: Float(time.seconds))
 						})
 					})
+				/*VideoPlayer(player: playerModel.player)
+					.onAppear(perform: {
+						playerModel.setPlayer(videoURL: scorewindData.currentLesson.video)
+						
+						playerModel.player!.addPeriodicTimeObserver(forInterval: CMTime(value: 1, timescale: 2), queue: .main, using: { time in
+							//print(time)
+							print(createTimeString(time: Float(time.seconds)))
+							//watchTime = createTimeString(time: Float(time.seconds))
+							self.viewModel.valuePublisher.send(String(String(format: "%.4f", Float(time.seconds))))
+							//watchTime = String(format: "%.4f", Float(time.seconds))//createTimeString(time: Float(time.seconds))
+						})
+					})*/
 				
 				VStack {
 					if showScore == false {
 						LessonTextView()
 					}else {
-						LessonScoreView(viewModel: viewModel)
+						LessonScoreView(viewModel: viewModel,player: $player)
 					}
 				}
 				.gesture(
@@ -93,14 +106,27 @@ struct LessonView: View {
 			.sheet(isPresented: $showNavigationGuide,onDismiss: {
 				viewModel.score = scorewindData.currentLesson.scoreViewer
 				viewModel.highlightBar = 1
+				
+				player.pause()
+				player.replaceCurrentItem(with: nil)
 				player = AVPlayer(url: URL(string: decodeVideoURL(videoURL: scorewindData.currentLesson.video))!)
 				player.addPeriodicTimeObserver(forInterval: CMTime(value: 1, timescale: 2), queue: .main, using: { time in
 					//print(time)
 					print(createTimeString(time: Float(time.seconds)))
 					//watchTime = createTimeString(time: Float(time.seconds))
-					self.viewModel.valuePublisher.send(String(String(format: "%.4f", Float(time.seconds))))
+					//self.viewModel.valuePublisher.send(String(String(format: "%.4f", Float(time.seconds))))
 					//watchTime = String(format: "%.4f", Float(time.seconds))//createTimeString(time: Float(time.seconds))
 				})
+				
+				/*playerModel = PlayerViewModel()
+				playerModel.setPlayer(videoURL: scorewindData.currentLesson.video)
+				playerModel.player!.addPeriodicTimeObserver(forInterval: CMTime(value: 1, timescale: 2), queue: .main, using: { time in
+					//print(time)
+					print(createTimeString(time: Float(time.seconds)))
+					//watchTime = createTimeString(time: Float(time.seconds))
+					self.viewModel.valuePublisher.send(String(String(format: "%.4f", Float(time.seconds))))
+					//watchTime = String(format: "%.4f", Float(time.seconds))//createTimeString(time: Float(time.seconds))
+				})*/
 			}){
 				NavigationGuideView(isPresented: self.$showNavigationGuide, setToView: self.$goToView)
 			}
@@ -128,9 +154,9 @@ struct LessonView: View {
 		return timeRemainingFormatter.string(from: components as DateComponents)!
 	}
 	
-	func callVideo(timestamp: String){
+	/*func callVideo(timestamp: String){
 		player.play()
-	}
+	}*/
 }
 
 struct LessonView_Previews: PreviewProvider {
