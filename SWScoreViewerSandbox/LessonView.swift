@@ -44,6 +44,7 @@ struct LessonView: View {
 							//self.viewModel.valuePublisher.send(String(String(format: "%.4f", Float(time.seconds))))
 							//watchTime = String(format: "%.4f", Float(time.seconds))//createTimeString(time: Float(time.seconds))
 						})
+						viewModel.videoPlayer = player
 					})
 				/*VideoPlayer(player: playerModel.player)
 					.onAppear(perform: {
@@ -117,6 +118,7 @@ struct LessonView: View {
 					//self.viewModel.valuePublisher.send(String(String(format: "%.4f", Float(time.seconds))))
 					//watchTime = String(format: "%.4f", Float(time.seconds))//createTimeString(time: Float(time.seconds))
 				})
+				viewModel.videoPlayer = player
 				
 				/*playerModel = PlayerViewModel()
 				playerModel.setPlayer(videoURL: scorewindData.currentLesson.video)

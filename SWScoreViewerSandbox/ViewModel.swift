@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import AVKit
 class ViewModel: ObservableObject {
 	var webViewNavigationPublisher = PassthroughSubject<WebViewNavigation, Never>()
 	var showWebTitle = PassthroughSubject<String, Never>()
@@ -16,6 +17,7 @@ class ViewModel: ObservableObject {
 	var zoomInPublisher = PassthroughSubject<String, Never>()
 	var score:String = ""
 	var highlightBar = 1
+	var videoPlayer: AVPlayer?
 }
 
 // For identifiying WebView's forward and backward navigation

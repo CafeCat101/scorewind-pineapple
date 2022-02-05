@@ -25,11 +25,12 @@ struct WebView: UIViewRepresentable, WebViewHandlerDelegate {
 	// Viewmodel object
 	@ObservedObject var viewModel: ViewModel
 	var score: String
-	var linkVideoPlayer: AVPlayer?
+	//var linkVideoPlayer: AVPlayer?
 	
 	func receivedJsonValueFromWebView(value: [String : Any?]) {
 		print("JSON value received from web is: \(value)")
-		linkVideoPlayer?.pause()
+		viewModel.videoPlayer?.pause()
+		//linkVideoPlayer?.pause()
 		
 	}
 	

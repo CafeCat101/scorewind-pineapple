@@ -15,7 +15,7 @@ struct LessonScoreView: View {
 	
 	var body: some View {
 		VStack {
-			WebView(url: .localUrl, viewModel: viewModel, score: scorewindData.currentLesson.scoreViewer, linkVideoPlayer: player).overlay (
+			WebView(url: .localUrl, viewModel: viewModel, score: scorewindData.currentLesson.scoreViewer).overlay (
 				RoundedRectangle(cornerRadius: 0, style: .circular)
 					.stroke(Color.gray, lineWidth: 0.5)
 			).padding(.leading, 0).padding(.trailing, 0)
