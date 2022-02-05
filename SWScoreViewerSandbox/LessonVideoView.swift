@@ -13,7 +13,7 @@ struct LessonVideoView: View {
 	@EnvironmentObject var scorewindData:ScorewindData
 	var viewModel:ViewModel
 	@Binding var showScore:Bool
-	@State var player = AVPlayer()
+	@Binding var player:AVPlayer
 	@State private var watchTime:String = ""
 	
 	var body: some View {
@@ -26,7 +26,7 @@ struct LessonVideoView: View {
 					player.addPeriodicTimeObserver(forInterval: CMTime(value: 1, timescale: 2), queue: .main, using: { time in
 						//print(time)
 						//print(createTimeString(time: Float(time.seconds)))
-						//watchTime = createTimeString(time: Float(time.seconds))
+						watchTime = createTimeString(time: Float(time.seconds))
 						self.viewModel.valuePublisher.send(String(String(format: "%.4f", Float(time.seconds))))
 						watchTime = String(format: "%.4f", Float(time.seconds))//createTimeString(time: Float(time.seconds))
 					})
@@ -85,9 +85,9 @@ struct LessonVideoView: View {
 		return timeRemainingFormatter.string(from: components as DateComponents)!
 	}
 }
-
+/*
 struct LessonVideoView_Previews: PreviewProvider {
 	static var previews: some View {
 		LessonVideoView(viewModel: ViewModel(), showScore: .constant(false))
 	}
-}
+}*/
