@@ -3,7 +3,7 @@
 //  SWScoreViewerSandbox
 //
 //  Created by Leonore Yardimli on 2022/1/6.
-//
+//(This file is not use now. video is moved to LessonView)
 
 import SwiftUI
 import AVKit
@@ -28,8 +28,6 @@ struct LessonVideoView: View {
 						//print(createTimeString(time: Float(time.seconds)))
 						watchTime = createTimeString(time: Float(time.seconds))
 						//self.viewModel.valuePublisher.send(String(String(format: "%.4f", Float(time.seconds))))
-						//self.viewModel.valuePublisher.send(String(findMesaureByTimestamp(videoTime: time.seconds)))
-						print("find measure:"+String(findMesaureByTimestamp(videoTime: time.seconds)))
 						watchTime = String(format: "%.4f", Float(time.seconds))//createTimeString(time: Float(time.seconds))
 					})
 				})
@@ -86,26 +84,7 @@ struct LessonVideoView: View {
 		components.second = Int(max(0.0, time))
 		return timeRemainingFormatter.string(from: components as DateComponents)!
 	}
-	
-	private func findMesaureByTimestamp(videoTime: Double)->Int{
-		var getMeasure = 0
-		for(index, theTime) in scorewindData.currentLesson.timestamps.enumerated(){
-			print("index "+String(index))
-			print("timestamp "+String(theTime.measure))
-			/*var endTimestamp = item.timestamp + 100
-			if index < scorewindData.currentLesson.timestamps.count-1 {
-				endTimestamp = scorewindData.currentLesson.timestamps[index+1].timestamp
-			}
-			print("loop timestamp "+String(item.timestamp))
-			print("endTimestamp "+String(endTimestamp))
-			if videoTime >= item.timestamp && videoTime < Double(endTimestamp) {
-				getMeasure = item.measure
-				break
-			}*/
-		}
-		
-		return getMeasure
-	}
+
 }
 /*
 struct LessonVideoView_Previews: PreviewProvider {

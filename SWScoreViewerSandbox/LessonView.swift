@@ -18,7 +18,6 @@ struct LessonView: View {
 	@State private var startPos:CGPoint = .zero
 	@State private var isSwipping = true
 	@State private var player = AVPlayer()
-	//@State private var playerModel = PlayerViewModel()
 	
 	var body: some View {
 		if goToView == "lesson" {
@@ -48,18 +47,6 @@ struct LessonView: View {
 						})
 						viewModel.videoPlayer = player
 					})
-				/*VideoPlayer(player: playerModel.player)
-					.onAppear(perform: {
-						playerModel.setPlayer(videoURL: scorewindData.currentLesson.video)
-						
-						playerModel.player!.addPeriodicTimeObserver(forInterval: CMTime(value: 1, timescale: 2), queue: .main, using: { time in
-							//print(time)
-							print(createTimeString(time: Float(time.seconds)))
-							//watchTime = createTimeString(time: Float(time.seconds))
-							self.viewModel.valuePublisher.send(String(String(format: "%.4f", Float(time.seconds))))
-							//watchTime = String(format: "%.4f", Float(time.seconds))//createTimeString(time: Float(time.seconds))
-						})
-					})*/
 				
 				VStack {
 					if showScore == false {
@@ -104,7 +91,6 @@ struct LessonView: View {
 				Spacer()
 			}
 			.onAppear(perform: {
-				print("vstack on appear")
 				viewModel.score = scorewindData.currentLesson.scoreViewer
 			})
 			.sheet(isPresented: $showNavigationGuide,onDismiss: {
@@ -118,20 +104,10 @@ struct LessonView: View {
 					//print(time)
 					print(createTimeString(time: Float(time.seconds)))
 					//watchTime = createTimeString(time: Float(time.seconds))
-					//self.viewModel.valuePublisher.send(String(String(format: "%.4f", Float(time.seconds))))
+					self.viewModel.valuePublisher.send(String(findMesaureByTimestamp(videoTime: time.seconds)))
 					//watchTime = String(format: "%.4f", Float(time.seconds))//createTimeString(time: Float(time.seconds))
 				})
 				viewModel.videoPlayer = player
-				
-				/*playerModel = PlayerViewModel()
-				playerModel.setPlayer(videoURL: scorewindData.currentLesson.video)
-				playerModel.player!.addPeriodicTimeObserver(forInterval: CMTime(value: 1, timescale: 2), queue: .main, using: { time in
-					//print(time)
-					print(createTimeString(time: Float(time.seconds)))
-					//watchTime = createTimeString(time: Float(time.seconds))
-					self.viewModel.valuePublisher.send(String(String(format: "%.4f", Float(time.seconds))))
-					//watchTime = String(format: "%.4f", Float(time.seconds))//createTimeString(time: Float(time.seconds))
-				})*/
 			}){
 				NavigationGuideView(isPresented: self.$showNavigationGuide, setToView: self.$goToView)
 			}
