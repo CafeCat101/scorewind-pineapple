@@ -34,18 +34,7 @@ struct LessonView: View {
 					.frame(height: screenSize.height/2.5)*/
 				VideoPlayer(player: player)
 					.onAppear(perform: {
-						player = AVPlayer(url: URL(string: decodeVideoURL(videoURL: scorewindData.currentLesson.video))!)
-						
-						player.addPeriodicTimeObserver(forInterval: CMTime(value: 1, timescale: 2), queue: .main, using: { time in
-							//print(time)
-							//print(createTimeString(time: Float(time.seconds)))
-							//watchTime = createTimeString(time: Float(time.seconds))
-							//print(String(String(format: "%.4f", Float(time.seconds))))
-							self.viewModel.valuePublisher.send(String(findMesaureByTimestamp(videoTime: time.seconds)))
-							//watchTime = String(format: "%.4f", Float(time.seconds))//createTimeString(time: Float(time.seconds))
-							print("find measure:"+String(findMesaureByTimestamp(videoTime: time.seconds)))
-						})
-						viewModel.videoPlayer = player
+						setupPlayer()
 					})
 				
 				VStack {
@@ -99,15 +88,7 @@ struct LessonView: View {
 				
 				player.pause()
 				player.replaceCurrentItem(with: nil)
-				player = AVPlayer(url: URL(string: decodeVideoURL(videoURL: scorewindData.currentLesson.video))!)
-				player.addPeriodicTimeObserver(forInterval: CMTime(value: 1, timescale: 2), queue: .main, using: { time in
-					//print(time)
-					print(createTimeString(time: Float(time.seconds)))
-					//watchTime = createTimeString(time: Float(time.seconds))
-					self.viewModel.valuePublisher.send(String(findMesaureByTimestamp(videoTime: time.seconds)))
-					//watchTime = String(format: "%.4f", Float(time.seconds))//createTimeString(time: Float(time.seconds))
-				})
-				viewModel.videoPlayer = player
+				setupPlayer()
 			}){
 				NavigationGuideView(isPresented: self.$showNavigationGuide, setToView: self.$goToView)
 			}
@@ -153,6 +134,21 @@ struct LessonView: View {
 		}
 		
 		return getMeasure
+	}
+	
+	private func setupPlayer(){
+		player = AVPlayer(url: URL(string: decodeVideoURL(videoURL: scorewindData.currentLesson.video))!)
+		
+		player.addPeriodicTimeObserver(forInterval: CMTime(value: 1, timescale: 2), queue: .main, using: { time in
+			//print(time)
+			//print(createTimeString(time: Float(time.seconds)))
+			//watchTime = createTimeString(time: Float(time.seconds))
+			//print(String(String(format: "%.4f", Float(time.seconds))))
+			self.viewModel.valuePublisher.send(String(findMesaureByTimestamp(videoTime: time.seconds)))
+			//watchTime = String(format: "%.4f", Float(time.seconds))//createTimeString(time: Float(time.seconds))
+			print("find measure:"+String(findMesaureByTimestamp(videoTime: time.seconds)))
+		})
+		viewModel.videoPlayer = player
 	}
 	
 	/*func callVideo(timestamp: String){
