@@ -19,6 +19,9 @@ struct LessonScoreView: View {
 				RoundedRectangle(cornerRadius: 0, style: .circular)
 					.stroke(Color.gray, lineWidth: 0.5)
 			).padding(.leading, 0).padding(.trailing, 0)
+				.onAppear(perform: {
+					print(scorewindData.timestampToJson())
+				})
 			
 			/*Button(action: {
 			 self.viewModel.loadPublisher.send(scorewindData.currentLesson.scoreViewer)

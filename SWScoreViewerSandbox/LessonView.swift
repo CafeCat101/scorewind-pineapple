@@ -39,10 +39,12 @@ struct LessonView: View {
 						
 						player.addPeriodicTimeObserver(forInterval: CMTime(value: 1, timescale: 2), queue: .main, using: { time in
 							//print(time)
-							print(createTimeString(time: Float(time.seconds)))
+							//print(createTimeString(time: Float(time.seconds)))
 							//watchTime = createTimeString(time: Float(time.seconds))
-							//self.viewModel.valuePublisher.send(String(String(format: "%.4f", Float(time.seconds))))
+							//print(String(String(format: "%.4f", Float(time.seconds))))
+							self.viewModel.valuePublisher.send(String(findMesaureByTimestamp(videoTime: time.seconds)))
 							//watchTime = String(format: "%.4f", Float(time.seconds))//createTimeString(time: Float(time.seconds))
+							print("find measure:"+String(findMesaureByTimestamp(videoTime: time.seconds)))
 						})
 						viewModel.videoPlayer = player
 					})
@@ -102,6 +104,7 @@ struct LessonView: View {
 				Spacer()
 			}
 			.onAppear(perform: {
+				print("vstack on appear")
 				viewModel.score = scorewindData.currentLesson.scoreViewer
 			})
 			.sheet(isPresented: $showNavigationGuide,onDismiss: {
@@ -154,6 +157,26 @@ struct LessonView: View {
 		let components = NSDateComponents()
 		components.second = Int(max(0.0, time))
 		return timeRemainingFormatter.string(from: components as DateComponents)!
+	}
+	
+	private func findMesaureByTimestamp(videoTime: Double)->Int{
+		var getMeasure = 0
+		for(index, theTime) in scorewindData.currentLesson.timestamps.enumerated(){
+			//print("index "+String(index))
+			//print("timestamp "+String(theTime.measure))
+			var endTimestamp = theTime.timestamp + 100
+			if index < scorewindData.currentLesson.timestamps.count-1 {
+				endTimestamp = scorewindData.currentLesson.timestamps[index+1].timestamp
+			}
+			print("loop timestamp "+String(theTime.timestamp))
+			print("endTimestamp "+String(endTimestamp))
+			if videoTime >= theTime.timestamp && videoTime < Double(endTimestamp) {
+				getMeasure = theTime.measure
+				break
+			}
+		}
+		
+		return getMeasure
 	}
 	
 	/*func callVideo(timestamp: String){

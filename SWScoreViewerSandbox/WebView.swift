@@ -84,6 +84,7 @@ struct WebView: UIViewRepresentable, WebViewHandlerDelegate {
 		var loadSubscriber: AnyCancellable? = nil
 		var zoomInSubscriber: AnyCancellable? = nil
 		var webViewNavigationSubscriber: AnyCancellable? = nil
+		var timestampPublisher:AnyCancellable? = nil
 		
 		init(_ uiWebView: WebView) {
 			self.parent = uiWebView
@@ -95,6 +96,7 @@ struct WebView: UIViewRepresentable, WebViewHandlerDelegate {
 			loadSubscriber?.cancel()
 			zoomInSubscriber?.cancel()
 			webViewNavigationSubscriber?.cancel()
+			timestampPublisher?.cancel()
 		}
 		
 		func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
@@ -126,6 +128,27 @@ struct WebView: UIViewRepresentable, WebViewHandlerDelegate {
 				}
 			}
 			
+			/*let testTimeStamp = [Timestamp(measure: 1, timestamp: 6.38), Timestamp(measure: 2, timestamp: 11.932), Timestamp(measure: 3, timestamp: 17.409), Timestamp(measure: 4, timestamp: 22.734), Timestamp(measure: 5, timestamp: 28.107), Timestamp(measure: 6, timestamp: 33.529)]
+			let encoder = JSONEncoder()
+			do{
+				let data = try encoder.encode(testTimeStamp)
+				let dataJson = String(data: data, encoding: .utf8)!
+				let replacedString = dataJson.replacingOccurrences(of: "\"", with: #"\""#)
+				let javascriptFunction2 = "loadTimestamps(\"\(replacedString)\");"
+				print(javascriptFunction2)
+				webView.evaluateJavaScript(javascriptFunction2) { (response, error) in
+					if let error = error {
+						print("Error calling javascript:loadTimestamps()")
+						print(error.localizedDescription)
+					} else {
+						print("Called javascript:loadTimestamps()[webView]")
+					}
+				}
+			}catch let error{
+				print(error)
+			}*/
+			
+			
 			
 			/* An observer that observes 'viewModel.valuePublisher' to get value from TextField and
 			 pass that value to web app by calling JavaScript function */
@@ -138,6 +161,19 @@ struct WebView: UIViewRepresentable, WebViewHandlerDelegate {
 						print(error.localizedDescription)
 					} else {
 						print("Called javascript:valueGotFromIOS()")
+					}
+				}
+			})
+			
+			timestampPublisher = parent.viewModel.timestampPublisher.receive(on: RunLoop.main).sink(receiveValue: { value in
+				let javascriptFunction = "loadTimestamps(\"\(value)\");"
+				print(javascriptFunction)
+				webView.evaluateJavaScript(javascriptFunction) { (response, error) in
+					if let error = error {
+						print("Error calling javascript:loadTimestamps()")
+						print(error.localizedDescription)
+					} else {
+						print("Called javascript:loadTimestamps()")
 					}
 				}
 			})

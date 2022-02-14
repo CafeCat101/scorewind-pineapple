@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C8569F2327AD641700E551ED /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8569F2227AD641700E551ED /* PlayerViewModel.swift */; };
+		C8569F2527AEF05F00E551ED /* ScorewindTimestamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8569F2427AEF05F00E551ED /* ScorewindTimestamp.swift */; };
 		C864FE1C2789440A0005E2F4 /* LessonScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C864FE1B2789440A0005E2F4 /* LessonScoreView.swift */; };
 		C864FE1E278944560005E2F4 /* www in Resources */ = {isa = PBXBuildFile; fileRef = C864FE1D278944560005E2F4 /* www */; };
 		C864FE20278944C60005E2F4 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C864FE1F278944C60005E2F4 /* ViewModel.swift */; };
@@ -28,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		C8569F2227AD641700E551ED /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
+		C8569F2427AEF05F00E551ED /* ScorewindTimestamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScorewindTimestamp.swift; sourceTree = "<group>"; };
 		C864FE1B2789440A0005E2F4 /* LessonScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonScoreView.swift; sourceTree = "<group>"; };
 		C864FE1D278944560005E2F4 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
 		C864FE1F278944C60005E2F4 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 				C8DD4FDE2785D63F0099BB55 /* ScorewindData.swift */,
 				C8DD4FE2278695800099BB55 /* ScorewindCourse.swift */,
 				C8DD4FE4278695CC0099BB55 /* ScorewindLesson.swift */,
+				C8569F2427AEF05F00E551ED /* ScorewindTimestamp.swift */,
 				C864FE1F278944C60005E2F4 /* ViewModel.swift */,
 				C864FE21278944F90005E2F4 /* WebView.swift */,
 				C864FE2527898DA60005E2F4 /* HTMLStringView.swift */,
@@ -186,6 +189,7 @@
 				C8DD4FE5278695CC0099BB55 /* ScorewindLesson.swift in Sources */,
 				C8DD4FDF2785D63F0099BB55 /* ScorewindData.swift in Sources */,
 				C8DD4FE1278694520099BB55 /* LessonVideoView.swift in Sources */,
+				C8569F2527AEF05F00E551ED /* ScorewindTimestamp.swift in Sources */,
 				C864FE2627898DA60005E2F4 /* HTMLStringView.swift in Sources */,
 				C8DD4FDD2785C02C0099BB55 /* NavigationGuideView.swift in Sources */,
 				C8DD4FDB2785BFD90099BB55 /* LessonView.swift in Sources */,

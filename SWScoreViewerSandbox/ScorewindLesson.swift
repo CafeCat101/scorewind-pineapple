@@ -14,4 +14,5 @@ struct Lesson: Identifiable {
 	var video: String
 	var scoreViewer: String
 	var content: String
+	var timestamps: [Timestamp]
 }

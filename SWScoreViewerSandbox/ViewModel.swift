@@ -15,6 +15,7 @@ class ViewModel: ObservableObject {
 	var valuePublisher = PassthroughSubject<String, Never>()
 	var loadPublisher = PassthroughSubject<String, Never>()
 	var zoomInPublisher = PassthroughSubject<String, Never>()
+	var timestampPublisher = PassthroughSubject<String, Never>()
 	var score:String = ""
 	var highlightBar = 1
 	var videoPlayer: AVPlayer?
@@ -29,3 +30,4 @@ enum WebViewNavigation {
 enum WebUrlType {
 	case localUrl, publicUrl
 }
+
