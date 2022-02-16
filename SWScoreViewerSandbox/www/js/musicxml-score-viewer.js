@@ -298,7 +298,7 @@ function render_sheet_again() {
 function load_score_view(LocalXMLFile) {
   timestamp_Json_Array = Local_timestamp_data;
   for (var i = 0; i < timestamp_Json_Array.length; i++) {
-    timestamp_Json_Array[i].id_ts = Number(timestamp_Json_Array[i].id_ts);
+    //timestamp_Json_Array[i].id_ts = Number(timestamp_Json_Array[i].id_ts);
     timestamp_Json_Array[i].measure = Number(timestamp_Json_Array[i].measure);
     timestamp_Json_Array[i].timestamp = Number(timestamp_Json_Array[i].timestamp);
   }

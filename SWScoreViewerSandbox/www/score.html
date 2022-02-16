@@ -18,7 +18,8 @@
 						var adminMode = false;
 						var LocalXMLFile = "https://scorewind.com/sw-music/pdfProject/Sheet13110/Methods_41480_24_Etudes_Op__35_Etude_No__17_Moderato__2268.xml";
 						var sheetID = "";
-						var Local_timestamp_data = [{"id_ts":0,"measure":0,"timestamp":0},{"id_ts":1,"measure":1,"timestamp":6.38000},{"id_ts":2,"measure":2,"timestamp":11.932000},{"id_ts":3,"measure":3,"timestamp":17.409000},{"id_ts":4,"measure":4,"timestamp":22.733999}];
+						var Local_timestamp_data = [];
+						//var Local_timestamp_data=[{"id_ts":0,"measure":0,"timestamp":0},{"id_ts":1,"measure":1,"timestamp":6.38000},{"id_ts":2,"measure":2,"timestamp":11.932000},{"id_ts":3,"measure":3,"timestamp":17.409000},{"id_ts":4,"measure":4,"timestamp":22.733999}];
 						 /*JSON.parse("[{\"measure\":1,\"timestamp\":6.380000114440918},{\"measure\":2,\"timestamp\":11.932000160217285},{\"measure\":3,\"timestamp\":17.409000396728516},{\"measure\":4,\"timestamp\":22.733999252319336},{\"measure\":5,\"timestamp\":28.107000350952148},{\"measure\":6,\"timestamp\":33.528999328613281}]"); [{"id_ts":0,"measure":0,"timestamp":0},{"id_ts":1,"measure":1,"timestamp":1.63507},{"id_ts":2,"measure":2,"timestamp":3.0458},{"id_ts":3,"measure":3,"timestamp":4.88502},{"id_ts":4,"measure":5,"timestamp":6.54889},{"id_ts":5,"measure":6,"timestamp":8.75735},{"id_ts":6,"measure":7,"timestamp":10.61263},{"id_ts":7,"measure":8,"timestamp":12.9323},{"id_ts":8,"measure":10,"timestamp":14.99736},{"id_ts":9,"measure":11,"timestamp":18.08084},{"id_ts":10,"measure":12,"timestamp":20.44426},{"id_ts":11,"measure":13,"timestamp":21.74902},{"id_ts":12,"measure":15,"timestamp":23.6524},{"id_ts":13,"measure":16,"timestamp":25.89369},{"id_ts":14,"measure":17,"timestamp":27.80444},{"id_ts":15,"measure":18,"timestamp":29.75703},{"id_ts":16,"measure":20,"timestamp":31.54092},{"id_ts":17,"measure":21,"timestamp":34.10773},{"id_ts":18,"measure":22,"timestamp":36.43838},{"id_ts":19,"measure":23,"timestamp":38.0443},{"id_ts":20,"measure":25,"timestamp":40.3962},{"id_ts":21,"measure":26,"timestamp":42.35609},{"id_ts":22,"measure":27,"timestamp":44.13953},{"id_ts":23,"measure":28,"timestamp":45.90758},{"id_ts":24,"measure":30,"timestamp":47.99595},{"id_ts":25,"measure":31,"timestamp":50.8362},{"id_ts":26,"measure":32,"timestamp":52.71218},{"id_ts":27,"measure":33,"timestamp":54.68862},{"id_ts":28,"measure":34,"timestamp":56.57936},{"id_ts":29,"measure":36,"timestamp":58.84624},{"id_ts":30,"measure":37,"timestamp":61.43915},{"id_ts":31,"measure":38,"timestamp":64.11325},{"id_ts":32,"measure":39,"timestamp":66.40711}];*/
 						
 						
@@ -45,7 +46,7 @@
 						}
 						
 						function loadTimestamps(value) {
-							//Local_timestamp_data = JSON.parse(value)
+							Local_timestamp_data = JSON.parse(value)
 						}
 						
 						

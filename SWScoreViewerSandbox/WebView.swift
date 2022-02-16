@@ -24,8 +24,9 @@ struct WebView: UIViewRepresentable, WebViewHandlerDelegate {
 	var url: WebUrlType
 	// Viewmodel object
 	@ObservedObject var viewModel: ViewModel
-	var score: String
+	//var score: String
 	//var linkVideoPlayer: AVPlayer?
+	@ObservedObject var scorewindData: ScorewindData
 	
 	func receivedJsonValueFromWebView(value: [String : Any?]) {
 		print("JSON value received from web is: \(value)")
@@ -115,23 +116,10 @@ struct WebView: UIViewRepresentable, WebViewHandlerDelegate {
 			}*/
 			
 			print("didFinish")
-			print("parent.viewModel.score: "+parent.viewModel.score)
-			print("parent.score:" + parent.score)
-			let javascriptFunction = "load_score_view(\"\(parent.viewModel.score)\");"
-			print(javascriptFunction)
-			webView.evaluateJavaScript(javascriptFunction) { (response, error) in
-				if let error = error {
-					print("Error calling javascript:load_score_view()")
-					print(error.localizedDescription)
-				} else {
-					print("Called javascript:load_score_view()")
-				}
-			}
 			
-			/*let testTimeStamp = [Timestamp(measure: 1, timestamp: 6.38), Timestamp(measure: 2, timestamp: 11.932), Timestamp(measure: 3, timestamp: 17.409), Timestamp(measure: 4, timestamp: 22.734), Timestamp(measure: 5, timestamp: 28.107), Timestamp(measure: 6, timestamp: 33.529)]
 			let encoder = JSONEncoder()
 			do{
-				let data = try encoder.encode(testTimeStamp)
+				let data = try encoder.encode(parent.scorewindData.currentLesson.timestamps)
 				let dataJson = String(data: data, encoding: .utf8)!
 				let replacedString = dataJson.replacingOccurrences(of: "\"", with: #"\""#)
 				let javascriptFunction2 = "loadTimestamps(\"\(replacedString)\");"
@@ -146,7 +134,23 @@ struct WebView: UIViewRepresentable, WebViewHandlerDelegate {
 				}
 			}catch let error{
 				print(error)
-			}*/
+			}
+			
+			print("parent.viewModel.score: "+parent.viewModel.score)
+			//print("parent.score:" + parent.score)
+			print("parent scorewindData scoreViewer:" + parent.scorewindData.currentLesson.scoreViewer)
+			let javascriptFunction = "load_score_view(\"\(parent.scorewindData.currentLesson.scoreViewer)\");"
+			print(javascriptFunction)
+			webView.evaluateJavaScript(javascriptFunction) { (response, error) in
+				if let error = error {
+					print("Error calling javascript:load_score_view()")
+					print(error.localizedDescription)
+				} else {
+					print("Called javascript:load_score_view()")
+				}
+			}
+			
+			
 			
 			
 			
@@ -188,7 +192,8 @@ struct WebView: UIViewRepresentable, WebViewHandlerDelegate {
 						print(error.localizedDescription)
 					} else {
 						print("Called javascript:load_score_view()")
-						print("parent.score: "+self.parent.score)
+						//print("parent.score: "+self.parent.score)
+						print("parent.score: "+self.parent.scorewindData.currentLesson.scoreViewer)
 					}
 				}
 			})

@@ -15,10 +15,11 @@ struct LessonScoreView: View {
 	
 	var body: some View {
 		VStack {
-			WebView(url: .localUrl, viewModel: viewModel, score: scorewindData.currentLesson.scoreViewer).overlay (
-				RoundedRectangle(cornerRadius: 0, style: .circular)
-					.stroke(Color.gray, lineWidth: 0.5)
-			).padding(.leading, 0).padding(.trailing, 0)
+			/*WebView(url: .localUrl, viewModel: viewModel, score: scorewindData.currentLesson.scoreViewer).padding(.leading, 0).padding(.trailing, 0)
+				.onAppear(perform: {
+					print(scorewindData.timestampToJson())
+				})*/
+			WebView(url: .localUrl, viewModel: viewModel, scorewindData: scorewindData).padding(.leading, 0).padding(.trailing, 0)
 				.onAppear(perform: {
 					print(scorewindData.timestampToJson())
 				})
@@ -58,9 +59,8 @@ struct LessonScoreView: View {
 				}
 			}
 		}
-		.onAppear(perform: {
-			print("LessonScoreView onAppear")
-		})
+		.edgesIgnoringSafeArea(.bottom)
+		.edgesIgnoringSafeArea(.top)
 	}
 }
 
