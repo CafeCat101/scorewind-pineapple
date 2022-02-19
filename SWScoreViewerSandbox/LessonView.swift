@@ -18,6 +18,7 @@ struct LessonView: View {
 	@State private var startPos:CGPoint = .zero
 	@State private var isSwipping = true
 	@State private var player = AVPlayer()
+	@State private var watchTime = ""
 	
 	var body: some View {
 		if goToView == "lesson" {
@@ -35,8 +36,9 @@ struct LessonView: View {
 				VideoPlayer(player: player)
 					.onAppear(perform: {
 						setupPlayer()
+						player.seek(to: CMTime(value: 18, timescale: 2))
 					})
-				
+				Text(watchTime)
 				VStack {
 					if showScore == false {
 						LessonTextView()
@@ -125,8 +127,10 @@ struct LessonView: View {
 			if index < scorewindData.currentLesson.timestamps.count-1 {
 				endTimestamp = scorewindData.currentLesson.timestamps[index+1].timestamp
 			}
+			print("==>")
 			print("loop timestamp "+String(theTime.timestamp))
 			print("endTimestamp "+String(endTimestamp))
+			print("<--")
 			if videoTime >= theTime.timestamp && videoTime < Double(endTimestamp) {
 				getMeasure = theTime.measure
 				break
@@ -139,13 +143,13 @@ struct LessonView: View {
 	private func setupPlayer(){
 		player = AVPlayer(url: URL(string: decodeVideoURL(videoURL: scorewindData.currentLesson.video))!)
 		
-		player.addPeriodicTimeObserver(forInterval: CMTime(value: 1, timescale: 2), queue: .main, using: { time in
+		player.addPeriodicTimeObserver(forInterval: CMTime(value: 1, timescale: 3), queue: .main, using: { time in
 			//print(time)
 			//print(createTimeString(time: Float(time.seconds)))
 			//watchTime = createTimeString(time: Float(time.seconds))
-			//print(String(String(format: "%.4f", Float(time.seconds))))
+			//print(String(format: "%.4f", Float(time.seconds)))
 			self.viewModel.valuePublisher.send(String(findMesaureByTimestamp(videoTime: time.seconds)))
-			//watchTime = String(format: "%.4f", Float(time.seconds))//createTimeString(time: Float(time.seconds))
+			watchTime = String(format: "%.4f", Float(time.seconds))//createTimeString(time: Float(time.seconds))
 			print("find measure:"+String(findMesaureByTimestamp(videoTime: time.seconds)))
 		})
 		viewModel.videoPlayer = player

@@ -32,7 +32,7 @@ struct WebView: UIViewRepresentable, WebViewHandlerDelegate {
 		print("JSON value received from web is: \(value)")
 		viewModel.videoPlayer?.pause()
 		//linkVideoPlayer?.pause()
-		
+		viewModel.playerGoTo()
 	}
 	
 	func receivedStringValueFromWebView(value: String) {

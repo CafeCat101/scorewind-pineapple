@@ -19,6 +19,14 @@ class ViewModel: ObservableObject {
 	var score:String = ""
 	var highlightBar = 1
 	var videoPlayer: AVPlayer?
+	
+	func playerGoTo(){
+		print("playerGoTo()[ViewModel]")
+		//let seekTime = CMTime(value: 17509, timescale: 1000)
+		videoPlayer?.seek(to: CMTime(seconds: Double(17.409).rounded(.toNearestOrEven), preferredTimescale: 1000))
+		//videoPlayer?.seek(to:seekTime)
+		videoPlayer?.play()
+	}
 }
 
 // For identifiying WebView's forward and backward navigation
