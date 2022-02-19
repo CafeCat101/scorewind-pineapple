@@ -181,7 +181,8 @@ function attach_mouse_events_to_sheet() {
       for (var i = 0; i < timestamp_Json_Array.length; i++) {
         if (timestamp_Json_Array[i].measure === current_measure) {
 
-          window.webkit.messageHandlers.iOSNative.postMessage({'ClickMeasure' : current_measure, 'TimeStamp': timestamp_Json_Array[i].timestamp });
+          //window.webkit.messageHandlers.iOSNative.postMessage({'ClickMeasure' : current_measure, 'TimeStamp': timestamp_Json_Array[i].timestamp });
+					window.webkit.messageHandlers.iOSNative.postMessage((timestamp_Json_Array[i].timestamp).toString())
           break;
         }
       }

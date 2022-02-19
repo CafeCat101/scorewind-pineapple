@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 import AVKit
+
 class ViewModel: ObservableObject {
 	var webViewNavigationPublisher = PassthroughSubject<WebViewNavigation, Never>()
 	var showWebTitle = PassthroughSubject<String, Never>()
@@ -20,12 +21,12 @@ class ViewModel: ObservableObject {
 	var highlightBar = 1
 	var videoPlayer: AVPlayer?
 	
-	func playerGoTo(){
+	func playerGoTo(timestamp:Double){
 		print("playerGoTo()[ViewModel]")
-		let seekTime = CMTime(value: 17509, timescale: 1000)
-		videoPlayer?.seek(to: CMTime(seconds: Double(17.409).rounded(.toNearestOrEven), preferredTimescale: 1000))
+		let timestampCMTime:Int64 = Int64(timestamp*1000)
+		let seekTime = CMTime(value: timestampCMTime, timescale: 1000)
+		videoPlayer?.seek(to: seekTime, toleranceBefore: CMTime.zero, toleranceAfter: CMTime.zero)
 		print("ViewModel playerGoTo "+String(CMTimeGetSeconds(seekTime)))
-		//videoPlayer?.seek(to:seekTime)
 		videoPlayer?.play()
 	}
 }

@@ -30,13 +30,18 @@ struct WebView: UIViewRepresentable, WebViewHandlerDelegate {
 	
 	func receivedJsonValueFromWebView(value: [String : Any?]) {
 		print("JSON value received from web is: \(value)")
-		viewModel.videoPlayer?.pause()
-		//linkVideoPlayer?.pause()
-		viewModel.playerGoTo()
+		//viewModel.videoPlayer?.pause()
+		//viewModel.playerGoTo()
 	}
 	
 	func receivedStringValueFromWebView(value: String) {
 		print("String value received from web is: \(value)")
+		if value.isEmpty == false {
+			viewModel.videoPlayer?.pause()
+			let valueDouble = Double(value)!
+			viewModel.playerGoTo(timestamp:Double(String(format: "%.3f", valueDouble))!)
+		}
+		
 	}
 	
 	// Make a coordinator to co-ordinate with WKWebView's default delegate functions

@@ -149,7 +149,7 @@ struct LessonView: View {
 			//watchTime = createTimeString(time: Float(time.seconds))
 			//print(String(format: "%.4f", Float(time.seconds)))
 			self.viewModel.valuePublisher.send(String(findMesaureByTimestamp(videoTime: time.seconds)))
-			watchTime = String(format: "%.4f", Float(time.seconds))//createTimeString(time: Float(time.seconds))
+			watchTime = String(format: "%.3f", Float(time.seconds))//createTimeString(time: Float(time.seconds))
 			print("find measure:"+String(findMesaureByTimestamp(videoTime: time.seconds)))
 		})
 		viewModel.videoPlayer = player
