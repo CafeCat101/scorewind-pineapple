@@ -22,8 +22,9 @@ class ViewModel: ObservableObject {
 	
 	func playerGoTo(){
 		print("playerGoTo()[ViewModel]")
-		//let seekTime = CMTime(value: 17509, timescale: 1000)
+		let seekTime = CMTime(value: 17509, timescale: 1000)
 		videoPlayer?.seek(to: CMTime(seconds: Double(17.409).rounded(.toNearestOrEven), preferredTimescale: 1000))
+		print("ViewModel playerGoTo "+String(CMTimeGetSeconds(seekTime)))
 		//videoPlayer?.seek(to:seekTime)
 		videoPlayer?.play()
 	}
