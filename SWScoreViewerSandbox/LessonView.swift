@@ -38,7 +38,9 @@ struct LessonView: View {
 						setupPlayer()
 						player.seek(to: CMTime(value: 18, timescale: 2))
 					})
+				
 				Text(watchTime)
+				
 				VStack {
 					if showScore == false {
 						LessonTextView()
@@ -94,6 +96,7 @@ struct LessonView: View {
 			}){
 				NavigationGuideView(isPresented: self.$showNavigationGuide, setToView: self.$goToView)
 			}
+			.edgesIgnoringSafeArea(.bottom)
 		}else{
 			ContentView()
 		}
@@ -141,16 +144,17 @@ struct LessonView: View {
 	}
 	
 	private func setupPlayer(){
+		watchTime = ""
+		
 		player = AVPlayer(url: URL(string: decodeVideoURL(videoURL: scorewindData.currentLesson.video))!)
 		
 		player.addPeriodicTimeObserver(forInterval: CMTime(value: 1, timescale: 3), queue: .main, using: { time in
-			//print(time)
-			//print(createTimeString(time: Float(time.seconds)))
-			//watchTime = createTimeString(time: Float(time.seconds))
-			//print(String(format: "%.4f", Float(time.seconds)))
-			self.viewModel.valuePublisher.send(String(findMesaureByTimestamp(videoTime: time.seconds)))
-			watchTime = String(format: "%.3f", Float(time.seconds))//createTimeString(time: Float(time.seconds))
-			print("find measure:"+String(findMesaureByTimestamp(videoTime: time.seconds)))
+			let catchTime = time.seconds
+			let atMeasure = findMesaureByTimestamp(videoTime: catchTime)
+			self.viewModel.valuePublisher.send(String(atMeasure))
+			self.viewModel.highlightBar = atMeasure
+			watchTime = String(format: "%.3f", Float(catchTime))//createTimeString(time: Float(time.seconds))
+			print("find measure:"+String(atMeasure))
 		})
 		viewModel.videoPlayer = player
 	}

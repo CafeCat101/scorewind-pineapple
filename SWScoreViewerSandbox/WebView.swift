@@ -62,8 +62,9 @@ struct WebView: UIViewRepresentable, WebViewHandlerDelegate {
 		
 		let webView = WKWebView(frame: CGRect.zero, configuration: configuration)
 		webView.navigationDelegate = context.coordinator
-		webView.allowsBackForwardNavigationGestures = true
-		webView.scrollView.isScrollEnabled = true
+		webView.allowsBackForwardNavigationGestures = false
+		webView.scrollView.isScrollEnabled = false
+		webView.isMultipleTouchEnabled = false
 		return webView
 	}
 	
