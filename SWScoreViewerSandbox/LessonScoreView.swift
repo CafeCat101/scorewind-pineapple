@@ -16,26 +16,30 @@ struct LessonScoreView: View {
 	//@GestureState var press = false
 	
 	var body: some View {
-		VStack {
-			/*WebView(url: .localUrl, viewModel: viewModel, score: scorewindData.currentLesson.scoreViewer).padding(.leading, 0).padding(.trailing, 0)
-			 .onAppear(perform: {
-			 print(scorewindData.timestampToJson())
-			 })*/
-			ZStack{
+		VStack() {
+			WebView(url: .localUrl, viewModel: viewModel, scorewindData: scorewindData)
+				.padding(.leading, 0)
+				.padding(.trailing, 0)
+				.padding(.bottom, 0)
+				.onAppear(perform: {
+					print(scorewindData.timestampToJson())
+				})
+				//.border(.black, width: 1)
+			/*ZStack(alignment: .bottom){
 				WebView(url: .localUrl, viewModel: viewModel, scorewindData: scorewindData)
 					.padding(.leading, 0)
 					.padding(.trailing, 0)
 					.onAppear(perform: {
 						print(scorewindData.timestampToJson())
 					})
-				/*if showScoreMenu == true {
-					Spacer()
+					.border(.black, width: 1)
+				HStack {
 					Text("Hacking with Swift")
 						.font(.largeTitle)
 						.background(Color.black)
 						.foregroundColor(.white)
-				}*/
-			}
+				}
+			}*/
 			
 			
 			/*Button(action: {
@@ -73,7 +77,25 @@ struct LessonScoreView: View {
 			 }
 			 
 			 }*/
+			/*ZStack {
+				HStack {
+					Button(action: {
+					self.viewModel.zoomInPublisher.send("Zoom In")
+					}) {
+					Image(systemName: "plus")
+					.font(.system(size: 20, weight: .regular))
+					.imageScale(.large)
+					.foregroundColor(.gray)
+					}
+					
+					Spacer()
+				}
+			}
+			.frame(height:50)
+			.background(.gray)*/
+			
 		}
+		.edgesIgnoringSafeArea(.bottom)
 		/*.gesture(
 			LongPressGesture(minimumDuration: 0.5)
 				.updating($press) { currentState, gestureState, transaction in

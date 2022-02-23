@@ -34,12 +34,12 @@ struct LessonView: View {
 				/*LessonVideoView(viewModel: viewModel, showScore: $showScore, player: $player)
 					.frame(height: screenSize.height/2.5)*/
 				VideoPlayer(player: player)
+					.frame(height: screenSize.height*0.35)
 					.onAppear(perform: {
 						setupPlayer()
-						player.seek(to: CMTime(value: 18, timescale: 2))
 					})
 				
-				Text(watchTime)
+				//Text(watchTime)
 				
 				VStack {
 					if showScore == false {
