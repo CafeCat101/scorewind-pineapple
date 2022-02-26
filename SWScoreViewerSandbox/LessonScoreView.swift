@@ -16,7 +16,7 @@ struct LessonScoreView: View {
 	//@GestureState var press = false
 	
 	var body: some View {
-		VStack() {
+		ZStack() {
 			WebView(url: .localUrl, viewModel: viewModel, scorewindData: scorewindData)
 				.padding(.leading, 0)
 				.padding(.trailing, 0)
