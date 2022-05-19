@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C82DD5A92835F33500EF74E2 /* 3647_12179_G_Major_2_Octave_Scale_With_Slurs_of_4.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = C82DD5A82835F33500EF74E2 /* 3647_12179_G_Major_2_Octave_Scale_With_Slurs_of_4.mp4 */; };
+		C82DD5AB2835F34600EF74E2 /* 12111_3739_Open_Parallel_Thirds.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = C82DD5AA2835F34600EF74E2 /* 12111_3739_Open_Parallel_Thirds.mp4 */; };
+		C82DD5AD2835F61D00EF74E2 /* Tarzan - Strangers Like Me.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = C82DD5AC2835F61D00EF74E2 /* Tarzan - Strangers Like Me.mp4 */; };
 		C8569F2527AEF05F00E551ED /* ScorewindTimestamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8569F2427AEF05F00E551ED /* ScorewindTimestamp.swift */; };
 		C864FE1C2789440A0005E2F4 /* LessonScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C864FE1B2789440A0005E2F4 /* LessonScoreView.swift */; };
 		C864FE1E278944560005E2F4 /* www in Resources */ = {isa = PBXBuildFile; fileRef = C864FE1D278944560005E2F4 /* www */; };
@@ -27,6 +30,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C82DD5A82835F33500EF74E2 /* 3647_12179_G_Major_2_Octave_Scale_With_Slurs_of_4.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 3647_12179_G_Major_2_Octave_Scale_With_Slurs_of_4.mp4; sourceTree = "<group>"; };
+		C82DD5AA2835F34600EF74E2 /* 12111_3739_Open_Parallel_Thirds.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 12111_3739_Open_Parallel_Thirds.mp4; sourceTree = "<group>"; };
+		C82DD5AC2835F61D00EF74E2 /* Tarzan - Strangers Like Me.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Tarzan - Strangers Like Me.mp4"; sourceTree = "<group>"; };
 		C8569F2427AEF05F00E551ED /* ScorewindTimestamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScorewindTimestamp.swift; sourceTree = "<group>"; };
 		C864FE1B2789440A0005E2F4 /* LessonScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonScoreView.swift; sourceTree = "<group>"; };
 		C864FE1D278944560005E2F4 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
@@ -77,6 +83,9 @@
 		C8DD4FCB2784822D0099BB55 /* SWScoreViewerSandbox */ = {
 			isa = PBXGroup;
 			children = (
+				C82DD5AC2835F61D00EF74E2 /* Tarzan - Strangers Like Me.mp4 */,
+				C82DD5AA2835F34600EF74E2 /* 12111_3739_Open_Parallel_Thirds.mp4 */,
+				C82DD5A82835F33500EF74E2 /* 3647_12179_G_Major_2_Octave_Scale_With_Slurs_of_4.mp4 */,
 				C864FE1D278944560005E2F4 /* www */,
 				C8DD4FCC2784822D0099BB55 /* SWScoreViewerSandboxApp.swift */,
 				C8DD4FD02784822E0099BB55 /* Assets.xcassets */,
@@ -164,7 +173,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C82DD5A92835F33500EF74E2 /* 3647_12179_G_Major_2_Octave_Scale_With_Slurs_of_4.mp4 in Resources */,
 				C864FE1E278944560005E2F4 /* www in Resources */,
+				C82DD5AD2835F61D00EF74E2 /* Tarzan - Strangers Like Me.mp4 in Resources */,
+				C82DD5AB2835F34600EF74E2 /* 12111_3739_Open_Parallel_Thirds.mp4 in Resources */,
 				C8DD4FD42784822E0099BB55 /* Preview Assets.xcassets in Resources */,
 				C8DD4FD12784822E0099BB55 /* Assets.xcassets in Resources */,
 			);

@@ -210,7 +210,7 @@ struct LessonView: View {
 	private func setupPlayer(){
 		watchTime = ""
 		
-		player = AVPlayer(url: URL(string: decodeVideoURL(videoURL: scorewindData.currentLesson.video))!)
+		player = AVPlayer(url: URL(fileURLWithPath: Bundle.main.path(forResource: scorewindData.currentLesson.video, ofType: "mp4")!))
 		
 		player.addPeriodicTimeObserver(forInterval: CMTime(value: 1, timescale: 3), queue: .main, using: { time in
 			let catchTime = time.seconds
