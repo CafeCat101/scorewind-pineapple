@@ -211,17 +211,16 @@ struct LessonView: View {
 		watchTime = ""
 		
 		player = AVPlayer(url: URL(string: decodeVideoURL(videoURL: scorewindData.currentLesson.video))!)
-		if player.status == .readyToPlay {
-			player.addPeriodicTimeObserver(forInterval: CMTime(value: 1, timescale: 3), queue: .main, using: { time in
-				let catchTime = time.seconds
-				let atMeasure = findMesaureByTimestamp(videoTime: catchTime)
-				self.viewModel.valuePublisher.send(String(atMeasure))
-				self.viewModel.highlightBar = atMeasure
-				watchTime = String(format: "%.3f", Float(catchTime))//createTimeString(time: Float(time.seconds))
-				print("find measure:"+String(atMeasure))
-			})
-			viewModel.videoPlayer = player
-		}
+		player.addPeriodicTimeObserver(forInterval: CMTime(value: 1, timescale: 3), queue: .main, using: { time in
+			let catchTime = time.seconds
+			let atMeasure = findMesaureByTimestamp(videoTime: catchTime)
+			self.viewModel.valuePublisher.send(String(atMeasure))
+			self.viewModel.highlightBar = atMeasure
+			watchTime = String(format: "%.3f", Float(catchTime))//createTimeString(time: Float(time.seconds))
+			print("find measure:"+String(atMeasure))
+		})
+		viewModel.videoPlayer = player
+		
 	}
 	
 	/*func callVideo(timestamp: String){
