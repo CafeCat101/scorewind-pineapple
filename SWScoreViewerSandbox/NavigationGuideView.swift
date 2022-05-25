@@ -9,7 +9,6 @@ import SwiftUI
 
 struct NavigationGuideView: View {
   @Binding var isPresented:Bool
-  @Binding var setToView:String
 	@EnvironmentObject var scorewindData:ScorewindData
   
   var body: some View {
@@ -20,7 +19,6 @@ struct NavigationGuideView: View {
 						Button(action: {
 							scorewindData.currentCourse = course
 							self.isPresented = false
-							self.setToView = "course"
 						}) {
 							Text(course.title)
 								.foregroundColor(Color.black)
@@ -33,7 +31,6 @@ struct NavigationGuideView: View {
 						Button(action: {
 							scorewindData.currentLesson = lesson
 							self.isPresented = false
-							self.setToView = "lesson"
 						}) {
 							Text(lesson.title)
 								.foregroundColor(Color.black)
@@ -47,7 +44,7 @@ struct NavigationGuideView: View {
 
 struct NavigationGuideView_Previews: PreviewProvider {
   static var previews: some View {
-    NavigationGuideView(isPresented: .constant(false), setToView: .constant(""))
+    NavigationGuideView(isPresented: .constant(false))
 			.environmentObject(ScorewindData())
   }
 }

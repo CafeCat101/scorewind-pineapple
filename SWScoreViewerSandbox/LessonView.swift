@@ -10,10 +10,9 @@ import AVKit
 
 struct LessonView: View {
 	@State private var showNavigationGuide = false
-	@State private var goToView = "lesson"
 	@EnvironmentObject var scorewindData:ScorewindData
 	let screenSize: CGRect = UIScreen.main.bounds
-	@ObservedObject var viewModel = ViewModel()
+	@StateObject var viewModel = ViewModel()
 	@State private var showScore = false
 	@State private var startPos:CGPoint = .zero
 	@State private var isSwipping = true
@@ -22,147 +21,149 @@ struct LessonView: View {
 	@State private var showScoreMenu = false
 	@GestureState var magnifyBy = 1.0
 	@State private var magnifyStep = 1
+	@Binding var setSelectedTab:String
 	
 	var body: some View {
-		if goToView == "lesson" {
-			VStack{
-				Button(action: {
-					showNavigationGuide = true
-				}) {
-					Text("\(scorewindData.currentLesson.title))")
-						.font(.title2)
-						.foregroundColor(Color.black)
+		VStack{
+			Button(action: {
+				showNavigationGuide = true
+			}) {
+				Text("\(scorewindData.currentLesson.title))")
+					.font(.title2)
+					.foregroundColor(Color.black)
+			}
+			
+			/*LessonVideoView(viewModel: viewModel, showScore: $showScore, player: $player)
+			 .frame(height: screenSize.height/2.5)*/
+			VideoPlayer(player: player)
+				.frame(height: screenSize.height*0.35)
+				.onAppear(perform: {
+					setupPlayer()
+				})
+				.onDisappear(perform: {
+					print("debug- VideoPlayer onDisappear")
+					player.pause()
+					player.replaceCurrentItem(with: nil)
+				})
+				.background(.green)
+			
+			//Text(watchTime)
+			
+			VStack {
+				if showScore == false {
+					LessonTextView()
+				}else {
+					LessonScoreView(viewModel: viewModel,player: $player)
 				}
-				
-				/*LessonVideoView(viewModel: viewModel, showScore: $showScore, player: $player)
-				 .frame(height: screenSize.height/2.5)*/
-				VideoPlayer(player: player)
-					.frame(height: screenSize.height*0.35)
-					.onAppear(perform: {
-						setupPlayer()
-					})
-					.background(.green)
-				
-				//Text(watchTime)
-				
-				VStack {
-					if showScore == false {
-						LessonTextView()
-					}else {
-						LessonScoreView(viewModel: viewModel,player: $player)
-					}
-				}
-				.simultaneousGesture(
-					DragGesture()
-						.onChanged { gesture in
-							if self.isSwipping {
-								self.startPos = gesture.location
-								self.isSwipping.toggle()
-							}
-						}
-						.onEnded { gesture in
-							let xDist =  abs(gesture.location.x - self.startPos.x)
-							let yDist =  abs(gesture.location.y - self.startPos.y)
-							if self.startPos.y <  gesture.location.y && yDist > xDist {
-								//down
-							}
-							else if self.startPos.y >  gesture.location.y && yDist > xDist {
-								//up
-							}
-							else if self.startPos.x > gesture.location.x && yDist < xDist {
-								//left
-								withAnimation{
-									showScore = true
-								}
-							}
-							else if self.startPos.x < gesture.location.x && yDist < xDist {
-								//right
-								withAnimation{
-									showScore = false
-								}
-							}
+			}
+			.simultaneousGesture(
+				DragGesture()
+					.onChanged { gesture in
+						if self.isSwipping {
+							self.startPos = gesture.location
 							self.isSwipping.toggle()
 						}
-				)
-				.simultaneousGesture(
-					MagnificationGesture()
-						.updating($magnifyBy) { currentState, gestureState, transaction in
-							//maginificationSensitivity += 1
-							gestureState = currentState
-							print("step \(magnifyStep)")
-							print("magnifyBy \(magnifyBy)")
-							/*if maginificationStep == 50 {
-							 if magnifyBy > viewModel.magnification {
-							 viewModel.zoomInPublisher.send("Zoom In")
-							 print("zoom in")
-							 }
-							 
-							 if magnifyBy < viewModel.magnification {
-							 viewModel.zoomInPublisher.send("Zoom Out")
-							 print("zoom out")
-							 }
-							 
-							 viewModel.magnification = magnifyBy
-							 }*/
+					}
+					.onEnded { gesture in
+						let xDist =  abs(gesture.location.x - self.startPos.x)
+						let yDist =  abs(gesture.location.y - self.startPos.y)
+						if self.startPos.y <  gesture.location.y && yDist > xDist {
+							//down
 						}
-						.onChanged() { _ in
-							/*maginificationStep += 1
-							 if maginificationStep > 50 {
-							 maginificationStep = 1
-							 }*/
-							magnifyStep += 1
-							if magnifyStep > 50 {
-								if magnifyBy >= 1 {
-									viewModel.zoomInPublisher.send("Zoom In")
-								}
-								
-								if magnifyBy < 1 {
-									viewModel.zoomInPublisher.send("Zoom Out")
-								}
-								
-								magnifyStep = 1
+						else if self.startPos.y >  gesture.location.y && yDist > xDist {
+							//up
+						}
+						else if self.startPos.x > gesture.location.x && yDist < xDist {
+							//left
+							withAnimation{
+								showScore = true
 							}
 						}
-						.onEnded { value in
-							//showScoreMenu.toggle()
-							print("maginification \(value)")
-							//maginificationStep = 1
-							/*if value>magnifyBy {
-							 viewModel.zoomInPublisher.send("Zoom In")
-							 }
-							 
-							 if value<magnifyBy {
-							 viewModel.zoomInPublisher.send("Zoom Out")
-							 }*/
-							if value >= 1 {
+						else if self.startPos.x < gesture.location.x && yDist < xDist {
+							//right
+							withAnimation{
+								showScore = false
+								player.pause()
+							}
+						}
+						self.isSwipping.toggle()
+					}
+			)
+			.simultaneousGesture(
+				MagnificationGesture()
+					.updating($magnifyBy) { currentState, gestureState, transaction in
+						//maginificationSensitivity += 1
+						gestureState = currentState
+						print("step \(magnifyStep)")
+						print("magnifyBy \(magnifyBy)")
+						/*if maginificationStep == 50 {
+						 if magnifyBy > viewModel.magnification {
+						 viewModel.zoomInPublisher.send("Zoom In")
+						 print("zoom in")
+						 }
+						 
+						 if magnifyBy < viewModel.magnification {
+						 viewModel.zoomInPublisher.send("Zoom Out")
+						 print("zoom out")
+						 }
+						 
+						 viewModel.magnification = magnifyBy
+						 }*/
+					}
+					.onChanged() { _ in
+						/*maginificationStep += 1
+						 if maginificationStep > 50 {
+						 maginificationStep = 1
+						 }*/
+						magnifyStep += 1
+						if magnifyStep > 50 {
+							if magnifyBy >= 1 {
 								viewModel.zoomInPublisher.send("Zoom In")
 							}
 							
-							if value < 1 {
+							if magnifyBy < 1 {
 								viewModel.zoomInPublisher.send("Zoom Out")
 							}
+							
+							magnifyStep = 1
 						}
-				)
-				Spacer()
-			}
-			.onAppear(perform: {
-				viewModel.score = scorewindData.currentLesson.scoreViewer
-			})
-			.sheet(isPresented: $showNavigationGuide,onDismiss: {
-				viewModel.score = scorewindData.currentLesson.scoreViewer
-				viewModel.highlightBar = 1
-				magnifyStep = 1
-				
-				
-				player.pause()
-				player.replaceCurrentItem(with: nil)
-				setupPlayer()
-			}){
-				NavigationGuideView(isPresented: self.$showNavigationGuide, setToView: self.$goToView)
-			}
-			.edgesIgnoringSafeArea(.bottom)
-		}else{
-			ContentView()
+					}
+					.onEnded { value in
+						//showScoreMenu.toggle()
+						print("maginification \(value)")
+						//maginificationStep = 1
+						/*if value>magnifyBy {
+						 viewModel.zoomInPublisher.send("Zoom In")
+						 }
+						 
+						 if value<magnifyBy {
+						 viewModel.zoomInPublisher.send("Zoom Out")
+						 }*/
+						if value >= 1 {
+							viewModel.zoomInPublisher.send("Zoom In")
+						}
+						
+						if value < 1 {
+							viewModel.zoomInPublisher.send("Zoom Out")
+						}
+					}
+			)
+			Spacer()
+		}
+		.onAppear(perform: {
+			viewModel.score = scorewindData.currentLesson.scoreViewer
+		})
+		.sheet(isPresented: $showNavigationGuide,onDismiss: {
+			viewModel.score = scorewindData.currentLesson.scoreViewer
+			viewModel.highlightBar = 1
+			magnifyStep = 1
+			
+			
+			player.pause()
+			player.replaceCurrentItem(with: nil)
+			setupPlayer()
+		}){
+			NavigationGuideView(isPresented: self.$showNavigationGuide)
 		}
 	}
 	
@@ -229,7 +230,8 @@ struct LessonView: View {
 }
 
 struct LessonView_Previews: PreviewProvider {
+	@State static var setSelectedTab = "TScoreViewer"
 	static var previews: some View {
-		LessonView().environmentObject(ScorewindData())
+		LessonView(setSelectedTab: $setSelectedTab).environmentObject(ScorewindData())
 	}
 }

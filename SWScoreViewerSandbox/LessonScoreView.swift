@@ -95,7 +95,6 @@ struct LessonScoreView: View {
 			.background(.gray)*/
 			
 		}
-		.edgesIgnoringSafeArea(.bottom)
 		/*.gesture(
 			LongPressGesture(minimumDuration: 0.5)
 				.updating($press) { currentState, gestureState, transaction in
