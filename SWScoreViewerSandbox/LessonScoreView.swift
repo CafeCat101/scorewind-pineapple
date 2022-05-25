@@ -11,7 +11,7 @@ import AVFoundation
 struct LessonScoreView: View {
 	var viewModel:ViewModel
 	@EnvironmentObject var scorewindData:ScorewindData
-	@Binding var player: AVPlayer
+	//@Binding var player: AVPlayer
 	//@State private var showScoreMenu = false
 	//@GestureState var press = false
 	
@@ -110,6 +110,6 @@ struct LessonScoreView: View {
 struct LessonScoreView_Previews: PreviewProvider {
 	@State static var player = AVPlayer()
 	static var previews: some View {
-		LessonScoreView(viewModel: ViewModel(), player: $player).environmentObject(ScorewindData())
+		LessonScoreView(viewModel: ViewModel()).environmentObject(ScorewindData())
 	}
 }

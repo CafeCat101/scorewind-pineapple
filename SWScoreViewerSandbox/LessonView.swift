@@ -16,7 +16,7 @@ struct LessonView: View {
 	@State private var showScore = false
 	@State private var startPos:CGPoint = .zero
 	@State private var isSwipping = true
-	@State private var player = AVPlayer()
+	//@State private var player = AVPlayer()
 	@State private var watchTime = ""
 	@State private var showScoreMenu = false
 	@GestureState var magnifyBy = 1.0
@@ -35,7 +35,7 @@ struct LessonView: View {
 			
 			/*LessonVideoView(viewModel: viewModel, showScore: $showScore, player: $player)
 			 .frame(height: screenSize.height/2.5)*/
-			VideoPlayer(player: player)
+			/*VideoPlayer(player: player)
 				.frame(height: screenSize.height*0.35)
 				.onAppear(perform: {
 					setupPlayer()
@@ -45,6 +45,18 @@ struct LessonView: View {
 					player.pause()
 					player.replaceCurrentItem(with: nil)
 				})
+				.background(.green)*/
+			VideoPlayer(player: viewModel.videoPlayer)
+				.frame(height: screenSize.height*0.35)
+				.onAppear(perform: {
+					print("VideoPlayer onAppear")
+					setupPlayer()
+				})
+				.onDisappear(perform: {
+					print("debug- VideoPlayer onDisappear")
+					viewModel.videoPlayer!.pause()
+					viewModel.videoPlayer!.replaceCurrentItem(with: nil)
+				})
 				.background(.green)
 			
 			//Text(watchTime)
@@ -53,7 +65,8 @@ struct LessonView: View {
 				if showScore == false {
 					LessonTextView()
 				}else {
-					LessonScoreView(viewModel: viewModel,player: $player)
+					//LessonScoreView(viewModel: viewModel,player: $player)
+					LessonScoreView(viewModel: viewModel)
 				}
 			}
 			.simultaneousGesture(
@@ -83,7 +96,8 @@ struct LessonView: View {
 							//right
 							withAnimation{
 								showScore = false
-								player.pause()
+								//player.pause()
+								viewModel.videoPlayer?.pause()
 							}
 						}
 						self.isSwipping.toggle()
@@ -151,6 +165,7 @@ struct LessonView: View {
 			Spacer()
 		}
 		.onAppear(perform: {
+			print("LessonView onAppear")
 			viewModel.score = scorewindData.currentLesson.scoreViewer
 		})
 		.sheet(isPresented: $showNavigationGuide,onDismiss: {
@@ -159,8 +174,11 @@ struct LessonView: View {
 			magnifyStep = 1
 			
 			
-			player.pause()
-			player.replaceCurrentItem(with: nil)
+			//player.pause()
+			//player.replaceCurrentItem(with: nil)
+			viewModel.videoPlayer?.pause()
+			viewModel.videoPlayer?.replaceCurrentItem(with: nil)
+			
 			setupPlayer()
 		}){
 			NavigationGuideView(isPresented: self.$showNavigationGuide)
@@ -211,7 +229,7 @@ struct LessonView: View {
 	private func setupPlayer(){
 		watchTime = ""
 		
-		player = AVPlayer(url: URL(string: decodeVideoURL(videoURL: scorewindData.currentLesson.video))!)
+		/*player = AVPlayer(url: URL(string: decodeVideoURL(videoURL: scorewindData.currentLesson.video))!)
 		player.addPeriodicTimeObserver(forInterval: CMTime(value: 1, timescale: 3), queue: .main, using: { time in
 			let catchTime = time.seconds
 			let atMeasure = findMesaureByTimestamp(videoTime: catchTime)
@@ -220,8 +238,16 @@ struct LessonView: View {
 			watchTime = String(format: "%.3f", Float(catchTime))//createTimeString(time: Float(time.seconds))
 			print("find measure:"+String(atMeasure))
 		})
-		viewModel.videoPlayer = player
-		
+		viewModel.videoPlayer = player*/
+		viewModel.videoPlayer = AVPlayer(url: URL(string: decodeVideoURL(videoURL: scorewindData.currentLesson.video))!)
+		viewModel.videoPlayer!.addPeriodicTimeObserver(forInterval: CMTime(value: 1, timescale: 3), queue: .main, using: { time in
+			let catchTime = time.seconds
+			let atMeasure = findMesaureByTimestamp(videoTime: catchTime)
+			self.viewModel.valuePublisher.send(String(atMeasure))
+			self.viewModel.highlightBar = atMeasure
+			watchTime = String(format: "%.3f", Float(catchTime))//createTimeString(time: Float(time.seconds))
+			print("find measure:"+String(atMeasure))
+		})
 	}
 	
 	/*func callVideo(timestamp: String){
