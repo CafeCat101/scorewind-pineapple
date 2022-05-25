@@ -21,7 +21,6 @@ struct LessonView: View {
 	@State private var showScoreMenu = false
 	@GestureState var magnifyBy = 1.0
 	@State private var magnifyStep = 1
-	@Binding var setSelectedTab:String
 	
 	var body: some View {
 		VStack{
@@ -256,8 +255,7 @@ struct LessonView: View {
 }
 
 struct LessonView_Previews: PreviewProvider {
-	@State static var setSelectedTab = "TScoreViewer"
 	static var previews: some View {
-		LessonView(setSelectedTab: $setSelectedTab).environmentObject(ScorewindData())
+		LessonView().environmentObject(ScorewindData())
 	}
 }

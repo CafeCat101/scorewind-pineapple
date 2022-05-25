@@ -45,7 +45,7 @@ struct ContentView: View {
 				.tabItem { Text("Courses/Lessons") }
 				.tag("TCourseLesson")
 			if scorewindData.currentLesson.id > 0 {
-				LessonView(setSelectedTab: $selectedTab)
+				LessonView()
 					.tabItem { Text("ScoreViewer") }
 					.tag("TScoreViewer")
 			}
